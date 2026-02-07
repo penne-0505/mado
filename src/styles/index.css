@@ -49,4 +49,46 @@ body::before {
     background: linear-gradient(155deg, rgb(255 255 255 / 16%), rgb(255 255 255 / 6%));
     backdrop-filter: blur(16px) saturate(140%);
   }
+
+  .widget-grid-shell {
+    width: 100%;
+  }
+
+  .widget-grid-layout {
+    min-height: 24rem;
+  }
+
+  .widget-grid-item {
+    height: 100%;
+  }
+
+  .widget-grid-item > * {
+    height: 100%;
+  }
+
+  .widget-grid-layout > .react-grid-item.react-grid-placeholder {
+    border-radius: 1.25rem;
+    background: linear-gradient(145deg, rgb(var(--color-accent) / 32%), rgb(var(--color-accent-warm) / 22%));
+    opacity: 0.28;
+  }
+
+  .widget-grid-layout > .react-grid-item.react-draggable-dragging {
+    z-index: 20;
+  }
+
+  .widget-grid-layout > .react-grid-item > .react-resizable-handle {
+    width: 18px;
+    height: 18px;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 22%);
+  }
+
+  .widget-grid-layout > .react-grid-item > .react-resizable-handle::after {
+    right: 4px;
+    bottom: 4px;
+    border-width: 0 2px 2px 0;
+    border-color: rgb(255 255 255 / 78%);
+  }
 }

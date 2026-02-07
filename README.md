@@ -4,9 +4,9 @@ mado は、ブラウザのホームページ（スタートページ）向けに
 
 ## Current Status
 
-- General-Feat-5 として、React + TypeScript + Tailwind によるダッシュボード基盤を実装済み
-- 共通レイアウト、デザイントークン、Widget カード共通UI、最小再利用コンポーネント群を提供
-- 次段（General-Feat-6）でドラッグ&ドロップレイアウトと永続化を追加予定
+- General-Feat-5/6 を実装済み（基盤UI + ドラッグ&ドロップレイアウト + LocalStorage永続化）
+- `react-grid-layout` ベースで、配置変更・リサイズ・再読み込み時のレイアウト復元が可能
+- 次段（General-Feat-7）としてコアウィジェット機能の拡張（設定UI含む）を予定
 
 ## Stack
 
@@ -43,3 +43,4 @@ npm run build
 - 実装計画: `_docs/plan/General/mvp-dashboard/plan.md`
 - 基盤ガイド: `_docs/guide/General/dashboard-foundation.md`
 - 基盤リファレンス: `_docs/reference/General/dashboard-foundation.md`
+- レイアウト永続化の実装意図: `_docs/intent/General/dashboard-layout-persistence.md`

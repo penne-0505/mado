@@ -271,9 +271,9 @@ ID生成およびタイトルのプレフィックスには以下のみを使用
 - **Dependencies**: [General-Feat-5]
 - **Goal**: ウィジェットのドラッグ&ドロップ配置とLocalStorageによる保存/復元が動作している。
 - **Steps**:
-  1. [ ] Planの「Tasks > 2. レイアウト基盤の実装」に従い `react-grid-layout` を導入
-  2. [ ] 配置変更・リサイズ・初期レイアウト復元の挙動を実装
-  3. [ ] LocalStorageへの保存/読み込みを組み込み、再読み込み後の状態復元を確認
+  1. [x] Planの「Tasks > 2. レイアウト基盤の実装」に従い `react-grid-layout` を導入
+  2. [x] 配置変更・リサイズ・初期レイアウト復元の挙動を実装
+  3. [x] LocalStorageへの保存/読み込みを組み込み、再読み込み後の状態復元を確認
 - **Description**: ダッシュボードの中核となる配置管理機能を実装する。
 - **Plan**: `_docs/plan/General/mvp-dashboard/plan.md`
 

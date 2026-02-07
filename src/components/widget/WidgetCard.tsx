@@ -26,13 +26,13 @@ export function WidgetCard({
   return (
     <article
       className={cn(
-        "group glass-panel flex min-h-64 flex-col gap-5 rounded-panel p-5 shadow-glow",
+        "group glass-panel flex h-full min-h-64 flex-col gap-5 rounded-panel p-5 shadow-glow",
         "animate-rise-fade",
         className,
       )}
       style={style}
     >
-      <header className="flex items-start justify-between gap-3">
+      <header className="widget-card-drag-handle flex cursor-grab select-none items-start justify-between gap-3 active:cursor-grabbing">
         <div>
           <p className="font-display text-lg font-semibold text-ink">{title}</p>
           <p className="mt-1 text-sm text-ink/70">{description}</p>

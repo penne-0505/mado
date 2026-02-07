@@ -43,4 +43,4 @@ related_prs: []
 
 ## Rollback / Follow-ups
 - ロールバック時は `src/components/` の基盤層を保持しつつ、`src/widgets/` のサンプル実装を最小化する。
-- 次タスク（General-Feat-6）で `react-grid-layout` 導入時に、`WidgetGrid` API とモバイル挙動を再検証する。
+- `react-grid-layout` 導入時の `WidgetGrid` API とモバイル挙動の再検証結果は `_docs/intent/General/dashboard-layout-persistence.md` に記録する。

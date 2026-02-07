@@ -7,13 +7,14 @@ updated_at: 2026-02-07
 references:
   - "_docs/plan/General/mvp-dashboard/plan.md"
   - "_docs/intent/General/dashboard-foundation.md"
+  - "_docs/intent/General/dashboard-layout-persistence.md"
 related_issues: []
 related_prs: []
 ---
 
 ## Overview
-- General-Feat-5 で実装したダッシュボード基盤の UI コンポーネント仕様をまとめる。
-- 本ドキュメントは、General-Feat-6 以降で追加されるドラッグ配置や API 連携の土台となる共通UIのみを対象とする。
+- General-Feat-5/6 で実装したダッシュボード基盤の UI コンポーネント仕様をまとめる。
+- 本ドキュメントは、共通UIとレイアウト制御（ドラッグ/リサイズ/保存復元）を対象とする。
 
 ## API
 ### `DashboardShell`
@@ -24,11 +25,14 @@ related_prs: []
 - **Examples**: `src/App.tsx` で `WidgetGrid` をラップして使用。
 
 ### `WidgetGrid`
-- **Summary**: ウィジェット用レスポンシブグリッド。`1 -> 2 -> 3`カラムへ段階的に拡張。
-- **Parameters**: `children` (`ReactNode`) - カード要素。
+- **Summary**: `react-grid-layout` ベースのレスポンシブグリッド。`1 -> 2 -> 3`カラムへ段階的に拡張し、ドラッグ/リサイズ結果を LocalStorage に保存する。
+- **Parameters**:
+  - `items` (`Array<{ id: string; content: ReactNode }>`): 描画対象ウィジェット。
+  - `defaultLayouts` (`ResponsiveLayouts`): breakpoint (`xl` / `md` / `sm`) ごとの初期レイアウト定義。
+  - `storageKey` (`string`, optional): レイアウト永続化キー。既定値は `mado.dashboard.layouts.v1`。
 - **Returns**: `JSX.Element`
-- **Errors**: なし
-- **Examples**: `src/App.tsx` の各 `WidgetCard` を配置。
+- **Errors**: LocalStorageが使えない場合は保存をスキップし、表示のみ継続。
+- **Examples**: `src/App.tsx` で `widgetItems` と `defaultWidgetLayouts` を渡して使用。
 
 ### `WidgetCard`
 - **Summary**: Widget の共通カード外観を提供する中核コンポーネント。
@@ -70,4 +74,4 @@ related_prs: []
 ## Notes
 - デザイントークンは `src/styles/index.css` の CSS Variables（`--color-*`）で一元管理する。
 - 背景グラデーションとグレイン表現は `body` と `body::before` で提供し、個別 Widget 側では重ねない。
-- General-Feat-6 では `WidgetGrid` の内部実装を `react-grid-layout` へ置き換える想定だが、`WidgetCard` API は維持する。
+- `WidgetGrid` は保存済みレイアウトを検証し、不正値や未知IDがあっても `defaultLayouts` を基準に正規化する。
