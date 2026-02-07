@@ -1,0 +1,58 @@
+---
+title: Dashboard Foundation Guide
+status: active
+draft_status: n/a
+created_at: 2026-02-07
+updated_at: 2026-02-07
+references:
+  - "_docs/plan/General/mvp-dashboard/plan.md"
+  - "_docs/reference/General/dashboard-foundation.md"
+related_issues: []
+related_prs: []
+---
+
+## Overview
+- 本ガイドは General-Feat-5 で導入したダッシュボード基盤（レイアウト、共通カード、最小再利用部品）の使い方を示す。
+- 対象は「新しい Widget を追加したい実装者」。見た目や状態表示の統一を維持することを目的とする。
+
+## Prerequisites
+- Node.js 18 以上
+- npm 9 以上
+
+## Setup / Usage
+- 依存関係インストール:
+
+```bash
+npm install
+```
+
+- 開発サーバ起動:
+
+```bash
+npm run dev
+```
+
+- 新しい Widget を追加する基本手順:
+  1. `src/widgets/` にウィジェット本体を追加する。
+  2. `src/App.tsx` の `WidgetGrid` 内で `WidgetCard` にラップして配置する。
+  3. `status` を `ready` / `loading` / `error` のいずれかに設定する。
+  4. 必要であれば `actions` に `Button` を渡してフッター操作を追加する。
+
+## Best Practices
+- レイアウト責務（列数・余白）は `WidgetGrid` と `WidgetCard` に集約し、各 Widget では内容表示に専念する。
+- 入力とボタンは `TextInput` / `Button` を優先し、視覚的一貫性を保つ。
+- 配色やガラス表現の変更は `src/styles/index.css` のデザイントークンを更新して行う。
+- General-Feat-6 で `react-grid-layout` に差し替える前提のため、Widget 側で絶対配置スタイルを持たせない。
+
+## Troubleshooting
+- 文字が読みにくい場合:
+  - `src/styles/index.css` の `--color-ink` と背景グラデーションのコントラストを調整する。
+- カードの横幅が期待と異なる場合:
+  - `src/App.tsx` の `WidgetCard` に指定した `md:col-span-*` / `xl:col-span-*` を確認する。
+- ビルド時に型エラーが出る場合:
+  - `npm run lint` で型エラー箇所を先に解消してから `npm run build` を実行する。
+
+## References
+- 実装計画: `_docs/plan/General/mvp-dashboard/plan.md`
+- コンポーネント仕様: `_docs/reference/General/dashboard-foundation.md`
+- 実装意図: `_docs/intent/General/dashboard-foundation.md`

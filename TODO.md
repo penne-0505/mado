@@ -1,7 +1,7 @@
 # Project Task Management Rules
 
 ## 0. System Metadata
-- **Current Max ID**: `Next ID No: 5` (※タスク追加時にインクリメント必須)
+- **Current Max ID**: `Next ID No: 11` (※タスク追加時にインクリメント必須)
 - **ID Source of Truth**: このファイルの `Next ID No` 行が、全プロジェクトにおける唯一のID発番元である。
 
 ## 1. Task Lifecycle (State Machine)
@@ -249,7 +249,90 @@ ID生成およびタイトルのプレフィックスには以下のみを使用
 
 ## Ready
 
+- **Title**: [Feat] Build dashboard foundation and design system
+- **ID**: General-Feat-5
+- **Priority**: P0
+- **Size**: M
+- **Area**: General
+- **Dependencies**: []
+- **Goal**: React + TypeScript + Tailwind を前提に、MVPの共通レイアウトとWidgetコンテナ基盤が実装されている。
+- **Steps**:
+  1. [x] Planの「Tasks > 1. 基盤準備」に従い、共通レイアウトとデザイントークンを整備
+  2. [x] Widgetカードの共通UI（見た目・余白・状態表示の枠組み）を実装
+  3. [x] 今後のウィジェット実装で再利用する最小コンポーネント群を作成
+- **Description**: MVP実装の前提となるUI/構成の土台を作る。
+- **Plan**: `_docs/plan/General/mvp-dashboard/plan.md`
+
+- **Title**: [Feat] Implement draggable layout and persistence
+- **ID**: General-Feat-6
+- **Priority**: P0
+- **Size**: M
+- **Area**: General
+- **Dependencies**: [General-Feat-5]
+- **Goal**: ウィジェットのドラッグ&ドロップ配置とLocalStorageによる保存/復元が動作している。
+- **Steps**:
+  1. [ ] Planの「Tasks > 2. レイアウト基盤の実装」に従い `react-grid-layout` を導入
+  2. [ ] 配置変更・リサイズ・初期レイアウト復元の挙動を実装
+  3. [ ] LocalStorageへの保存/読み込みを組み込み、再読み込み後の状態復元を確認
+- **Description**: ダッシュボードの中核となる配置管理機能を実装する。
+- **Plan**: `_docs/plan/General/mvp-dashboard/plan.md`
+
+- **Title**: [Feat] Implement core widgets for MVP
+- **ID**: General-Feat-7
+- **Priority**: P0
+- **Size**: M
+- **Area**: General
+- **Dependencies**: [General-Feat-6]
+- **Goal**: 時計・検索・クイックランチャー（単体リンク/タブ）をMVP要件どおり利用できる。
+- **Steps**:
+  1. [ ] Planの「Tasks > 3. コアウィジェット実装」に従い、時計/検索/ランチャーを実装
+  2. [ ] ランチャーの最小設定UI（リンク編集・タブ名変更）を実装
+  3. [ ] レイアウト基盤と連携し、追加したウィジェットを実際に配置・利用できる状態にする
+- **Description**: API依存のないコア機能を先に完成させ、MVPの利用価値を成立させる。
+- **Plan**: `_docs/plan/General/mvp-dashboard/plan.md`
+
+- **Title**: [Feat] Add weather and URL status Functions
+- **ID**: General-Feat-8
+- **Priority**: P1
+- **Size**: M
+- **Area**: General
+- **Dependencies**: [General-Feat-7]
+- **Goal**: 天気情報とURLステータス監視をCloudflare Pages Functions経由で取得・表示できる。
+- **Steps**:
+  1. [ ] Planの「Tasks > 4. Functions（非認証）実装」に従い、天気APIプロキシを実装
+  2. [ ] URLステータス監視API（HEAD/GET、タイムアウト時の扱い含む）を実装
+  3. [ ] フロントエンドの各ウィジェットとFunctionsを接続し、正常/異常表示を確認
+- **Description**: 外部情報を安全に取得する非認証Functionsと対応ウィジェットを実装する。
+- **Plan**: `_docs/plan/General/mvp-dashboard/plan.md`
+
+- **Title**: [Feat] Implement Google OAuth and Tasks viewer
+- **ID**: General-Feat-9
+- **Priority**: P0
+- **Size**: L
+- **Area**: General
+- **Dependencies**: [General-Feat-8]
+- **Goal**: OAuthログインからGoogle Tasks未完了タスク表示までの一連のフローがHttpOnly Cookie運用で成立している。
+- **Steps**:
+  1. [ ] Planの「Tasks > 5. OAuth/Tasks連携実装」に従い `/api/auth/login` `/api/auth/callback` `/api/tasks` を実装
+  2. [ ] AES-GCMによるCookie暗号化/復号化とトークン更新処理を実装
+  3. [ ] フロントエンドからTasks表示を接続し、期限切れ時の再認証導線を整備
+- **Description**: MVPの最難所である認証連携とTasks閲覧機能をセキュアに実装する。
+- **Plan**: `_docs/plan/General/mvp-dashboard/plan.md`
+
+- **Title**: [Test] Validate MVP quality and rollout readiness
+- **ID**: General-Test-10
+- **Priority**: P1
+- **Size**: M
+- **Area**: General
+- **Dependencies**: [General-Feat-9]
+- **Goal**: Test Planに沿った検証が完了し、デプロイ可能な品質であることを確認できている。
+- **Steps**:
+  1. [ ] Planの「Test Plan」に従い Unit/Integration/UI/Security 観点を検証
+  2. [ ] Planの「Deployment / Rollout」に従い環境変数・手動スモークテスト手順を整備
+  3. [ ] 発見した不具合の修正または既知課題化を行い、リリース判定を記録
+- **Description**: MVPを安全に公開するため、品質確認とリリース前チェックを完了させる。
+- **Plan**: `_docs/plan/General/mvp-dashboard/plan.md`
+
 ---
 
 ## In Progress
-
